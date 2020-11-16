@@ -102,20 +102,16 @@ public class IntJoukko {
 
     @Override
     public String toString() {
-        if (alkioidenMaara == 0) {
-            return "{}";
-        } else if (alkioidenMaara == 1) {
-            return "{" + lukujono[0] + "}";
-        } else {
-            String tuotos = "{";
-            for (int i = 0; i < alkioidenMaara - 1; i++) {
-                tuotos += lukujono[i];
-                tuotos += ", ";
+
+        StringBuilder merkkijono = new StringBuilder("{");
+        for (int i = 0; i < alkioidenMaara; i++) {
+            merkkijono.append(lukujono[i]);
+            if (i < alkioidenMaara-1) {
+                merkkijono.append(", ");
             }
-            tuotos += lukujono[alkioidenMaara - 1];
-            tuotos += "}";
-            return tuotos;
         }
+        merkkijono.append("}");
+        return merkkijono.toString();
     }
 
     public int[] toIntArray() {
