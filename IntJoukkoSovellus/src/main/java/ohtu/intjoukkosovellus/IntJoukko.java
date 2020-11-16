@@ -123,17 +123,17 @@ public class IntJoukko {
     }
 
 
-    public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
-        IntJoukko x = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            x.lisaaLuku(aTaulu[i]);
+    public static IntJoukko yhdiste(IntJoukko joukkoA, IntJoukko joukkoB) {
+        IntJoukko yhdiste = new IntJoukko();
+        int[] lukujonoA = joukkoA.toIntArray();
+        int[] lukujonoB = joukkoB.toIntArray();
+        for (int luku : lukujonoA) {
+            yhdiste.lisaaLuku(luku);
         }
-        for (int i = 0; i < bTaulu.length; i++) {
-            x.lisaaLuku(bTaulu[i]);
+        for (int luku : lukujonoB) {
+            yhdiste.lisaaLuku(luku);
         }
-        return x;
+        return yhdiste;
     }
 
     public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
