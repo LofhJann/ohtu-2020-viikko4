@@ -96,4 +96,32 @@ public class KauppaTest {
 
         verify(pankki).tilisiirto(eq("pekka"), eq(42), eq("12345"), anyString(), eq(5));
     }
+
+    @Test
+    public void asioinninAlussaTilaOnTyhjä() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+
+        verify(pankki).tilisiirto(anyString(), anyInt(), anyString(), anyString(), eq(0));
+    }
+
+    @Test
+    public void viitegeneraattoriLuoAinaUudenViitteen() {
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        k.tilimaksu("pekka", "12345");
+        verify(viite, times(2)).uusi();
+    }
+
+    @Test
+    public void poistaKoristaToimii() {
+        Tuote tuote = varasto.haeTuote(1);
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.poistaKorista(1);
+
+        verify(varasto, times(1)).palautaVarastoon(tuote);
+    }
 }
