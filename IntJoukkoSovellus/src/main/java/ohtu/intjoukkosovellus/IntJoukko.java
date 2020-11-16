@@ -36,12 +36,6 @@ public class IntJoukko {
 
     public boolean lisaaLuku(int luku) {
 
-        if (alkioidenMaara == 0) {
-            lukujono[0] = luku;
-            alkioidenMaara++;
-            return true;
-        }
-
         if (!sisaltaaLuvun(luku)) {
             lukujono[alkioidenMaara] = luku;
             alkioidenMaara++;
@@ -71,7 +65,6 @@ public class IntJoukko {
 
     public boolean poista(int luku) {
         int kohta = -1;
-        int apu;
 
         if (!sisaltaaLuvun(luku)) {
             return false;
@@ -85,9 +78,9 @@ public class IntJoukko {
         }
 
         for (int j = kohta; j < alkioidenMaara - 1; j++) {
-            apu = lukujono[j];
+            int lukujononLuku = lukujono[j];
             lukujono[j] = lukujono[j + 1];
-            lukujono[j + 1] = apu;
+            lukujono[j + 1] = lukujononLuku;
         }
         alkioidenMaara--;
         return true;
