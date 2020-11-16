@@ -125,29 +125,24 @@ public class IntJoukko {
 
     public static IntJoukko yhdiste(IntJoukko joukkoA, IntJoukko joukkoB) {
         IntJoukko yhdiste = new IntJoukko();
-        int[] lukujonoA = joukkoA.toIntArray();
-        int[] lukujonoB = joukkoB.toIntArray();
-        for (int luku : lukujonoA) {
+
+        for (int luku : joukkoA.toIntArray()) {
             yhdiste.lisaaLuku(luku);
         }
-        for (int luku : lukujonoB) {
+        for (int luku : joukkoB.toIntArray()) {
             yhdiste.lisaaLuku(luku);
         }
         return yhdiste;
     }
 
-    public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
-        IntJoukko y = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            for (int j = 0; j < bTaulu.length; j++) {
-                if (aTaulu[i] == bTaulu[j]) {
-                    y.lisaaLuku(bTaulu[j]);
-                }
+    public static IntJoukko leikkaus(IntJoukko joukkoA, IntJoukko joukkoB) {
+        IntJoukko leikkaus = new IntJoukko();
+        for (int luku : joukkoA.toIntArray()) {
+            if (joukkoB.sisaltaaLuvun(luku)) {
+                leikkaus.lisaaLuku(luku);
             }
         }
-        return y;
+        return leikkaus;
 
     }
 
