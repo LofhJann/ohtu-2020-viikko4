@@ -23,13 +23,20 @@ public class TennisGame {
 
     public String getScore() {
         if (player1Score == player2Score) {
-            scoreString = getEqualScoreString();
-        } else if (player1Score >= 4 || player2Score >= 4) {
-            scoreString = getAdvantageOrWinningScoreString();
+            return getEqualScoreString();
+        } else if (isBreakPoint()) {
+            return getAdvantageOrWinningScoreString();
         } else {
-            scoreString = getScoreString(player1Score) + "-" + getScoreString(player2Score);
+            return getScoreString(player1Score) + "-" + getScoreString(player2Score);
         }
-        return scoreString;
+    }
+
+    private boolean isBreakPoint() {
+        return isBreak();
+    }
+
+    private boolean isBreak() {
+        return player1Score >= 4 || player2Score >= 4;
     }
 
     private String getScoreString(int playerScore) {
@@ -48,13 +55,16 @@ public class TennisGame {
     }
 
     private String getAdvantageOrWinningScoreString() {
-        String score;
-        int minusResult = player1Score - player2Score;
-        if (minusResult == 1) score = "Advantage player1";
-        else if (minusResult == -1) score = "Advantage player2";
-        else if (minusResult >= 2) score = "Win for player1";
-        else score = "Win for player2";
-        return score;
+        int scoreDifference = player1Score - player2Score;
+        if (scoreDifference == 1) {
+            return "Advantage player1";
+        } else if (scoreDifference == -1) {
+            return "Advantage player2";
+        } else if (scoreDifference >= 2) {
+            return "Win for player1";
+        } else {
+            return "Win for player2";
+        }
     }
 
     private String getEqualScoreString() {
