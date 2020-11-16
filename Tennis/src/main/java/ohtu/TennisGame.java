@@ -6,6 +6,7 @@ public class TennisGame {
     private int player2Score = 0;
     private final String player1Name;
     private final String player2Name;
+    private String scoreString = "";
 
     public TennisGame(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -21,41 +22,29 @@ public class TennisGame {
     }
 
     public String getScore() {
-        String scoreString = "";
-        int tempScore = 0;
         if (player1Score == player2Score) {
             scoreString = getEqualScoreString();
         } else if (player1Score >= 4 || player2Score >= 4) {
             scoreString = getAdvantageOrWinningScoreString();
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = player1Score;
-                else {
-                    scoreString += "-";
-                    tempScore = player2Score;
-                }
-                scoreString = getScoreString(scoreString, tempScore);
-            }
+            scoreString = getScoreString(player1Score) + "-" + getScoreString(player2Score);
         }
         return scoreString;
     }
 
-    private String getScoreString(String scoreString, int tempScore) {
-        switch (tempScore) {
+    private String getScoreString(int playerScore) {
+        switch (playerScore) {
             case 0:
-                scoreString += "Love";
-                break;
+                return "Love";
             case 1:
-                scoreString += "Fifteen";
-                break;
+                return "Fifteen";
             case 2:
-                scoreString += "Thirty";
-                break;
+                return "Thirty";
             case 3:
-                scoreString += "Forty";
-                break;
+                return "Forty";
+            default:
+                return "wtf";
         }
-        return scoreString;
     }
 
     private String getAdvantageOrWinningScoreString() {
@@ -69,25 +58,17 @@ public class TennisGame {
     }
 
     private String getEqualScoreString() {
-        String score;
         switch (player1Score) {
             case 0:
-                score = "Love-All";
-                break;
+                return "Love-All";
             case 1:
-                score = "Fifteen-All";
-                break;
+                return "Fifteen-All";
             case 2:
-                score = "Thirty-All";
-                break;
+                return "Thirty-All";
             case 3:
-                score = "Forty-All";
-                break;
+                return "Forty-All";
             default:
-                score = "Deuce";
-                break;
-
+                return "Deuce";
         }
-        return score;
     }
 }
