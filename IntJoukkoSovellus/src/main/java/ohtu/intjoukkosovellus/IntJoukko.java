@@ -95,7 +95,7 @@ public class IntJoukko {
 
     }
 
-    public int mahtavuus() {
+    public int getAlkioidenMaara() {
         return alkioidenMaara;
     }
 

@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Sovellus {
 
-    private static IntJoukko A, B, C;
+    private static IntJoukko joukkoA = new IntJoukko();
+    private static IntJoukko joukkoB = new IntJoukko();
+    private static IntJoukko joukkoC = new IntJoukko();
 
     private static IntJoukko mikaJoukko() {
         Scanner lukija = new Scanner(System.in);
@@ -12,11 +14,11 @@ public class Sovellus {
         while (true) {
             String luettu = lukija.nextLine();
             if (luettu.equals("A") || luettu.equals("a")) {
-                return A;
+                return joukkoA;
             } else if (luettu.equals("B") || luettu.equals("b")) {
-                return B;
+                return joukkoB;
             } else if (luettu.equals("C") || luettu.equals("c")) {
-                return C;
+                return joukkoC;
             } else {
                 System.out.println("Virheellinen joukko! " + luettu);
                 System.out.print("Yritä uudelleen!");
@@ -95,10 +97,7 @@ public class Sovellus {
     }
 
     public static void main(String[] args) {
-        A = new IntJoukko();
-        B = new IntJoukko();
-        C = new IntJoukko();
-        String luettu;
+
 
         System.out.println("Tervetuloa joukkolaboratorioon!");
         System.out.println("Käytössäsi ovat joukot A, B ja C.");
@@ -107,7 +106,7 @@ public class Sovellus {
 
         Scanner lukija = new Scanner(System.in);
         while (true) {
-            luettu = lukija.nextLine();
+            String luettu = lukija.nextLine();
             if (luettu.equals("lisää") || luettu.equals("li")) {
                 lisaa();
             } else if (luettu.equalsIgnoreCase("poista") || luettu.equalsIgnoreCase("p")) {
@@ -121,11 +120,11 @@ public class Sovellus {
             } else if (luettu.equalsIgnoreCase("erotus") || luettu.equalsIgnoreCase("e")) {
                 erotus();
             } else if (luettu.equalsIgnoreCase("A")) {
-                System.out.println(A);
+                System.out.println(joukkoA);
             } else if (luettu.equalsIgnoreCase("B")) {
-                System.out.println(B);
+                System.out.println(joukkoB);
             } else if (luettu.equalsIgnoreCase("C")) {
-                System.out.println(C);
+                System.out.println(joukkoC);
             } else if (luettu.equalsIgnoreCase("lopeta") || luettu.equalsIgnoreCase("quit") || luettu.equalsIgnoreCase("q")) {
                 System.out.println("Lopetetaan, moikka!");
                 break;
