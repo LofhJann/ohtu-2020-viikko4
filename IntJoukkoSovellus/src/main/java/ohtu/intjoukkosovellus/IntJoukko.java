@@ -146,18 +146,15 @@ public class IntJoukko {
 
     }
 
-    public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
-        IntJoukko z = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            z.lisaaLuku(aTaulu[i]);
-        }
-        for (int i = 0; i < bTaulu.length; i++) {
-            z.poista(bTaulu[i]);
+    public static IntJoukko erotus(IntJoukko joukkoA, IntJoukko joukkoB) {
+        IntJoukko erotus = new IntJoukko();
+        for (int luku : joukkoA.toIntArray()) {
+            if (!joukkoB.sisaltaaLuvun(luku)) {
+                erotus.lisaaLuku(luku);
+            }
         }
 
-        return z;
+        return erotus;
     }
 
 }
