@@ -72,25 +72,27 @@ public class IntJoukko {
     public boolean poista(int luku) {
         int kohta = -1;
         int apu;
-        for (int i = 0; i < alkioidenMaara; i++) {
-            if (luku == lukujono[i]) {
-                kohta = i; //siis luku löytyy tuosta kohdasta :D
-                lukujono[kohta] = 0;
-                break;
-            }
-        }
-        if (kohta != -1) {
-            for (int j = kohta; j < alkioidenMaara - 1; j++) {
-                apu = lukujono[j];
-                lukujono[j] = lukujono[j + 1];
-                lukujono[j + 1] = apu;
-            }
-            alkioidenMaara--;
-            return true;
+
+        if (!sisaltaaLuvun(luku)) {
+            return false;
         }
 
+        for (int i = 0; i < lukujono.length; i++) {
+            if (lukujono[i] == luku) {
+                lukujono[i] = 0;
+                kohta = i;
+            }
+        }
 
-        return false;
+        for (int j = kohta; j < alkioidenMaara - 1; j++) {
+            apu = lukujono[j];
+            lukujono[j] = lukujono[j + 1];
+            lukujono[j + 1] = apu;
+        }
+        alkioidenMaara--;
+        return true;
+
+
     }
 
     private void kopioiTaulukko(int[] vanha, int[] uusi) {
